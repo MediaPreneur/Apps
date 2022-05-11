@@ -42,24 +42,21 @@ class GraphBook:
         self.line_data = {"line_equation":'',
                             }
                 
-    def  save_trajectory(self):
+    def save_trajectory(self):
         self.running = False
-        
+
         print("\n please enter file name to save directory  or else it will be saved  with a random name\nfind trajectories at Desktop/trajectories")
         name = input("filename   :")
-        if self.points != []:
-            # we have somthing to save
-            
-            if name == "":
-                # name is  blank
-                DataHandler().save_trajectory_points(self.cached_points)
-            else:
-                DataHandler().save_trajectory_points(self.cached_points, name)
-                print(f"file {name}.txt has been saved")
-                  
-        else:
+        if self.points == []:
             print("nothing to save")
-            
+
+        elif name == "":
+            # name is  blank
+            DataHandler().save_trajectory_points(self.cached_points)
+        else:
+            DataHandler().save_trajectory_points(self.cached_points, name)
+            print(f"file {name}.txt has been saved")
+
         self.running = True
                         
     def key_input(self):
@@ -128,11 +125,18 @@ class GraphBook:
     def line_equation_bar(self, window):
         # display the line equation of the straight
         #  line between start point and end point
-        
-        
+
+
         line_equation = self.line_data['line_equation']
         curved_equation = 'coming soon'
-        U.text_to_gamer(f"equation of start and endpoint line".upper(), (170,560), window, self.output_color, self.output_font)
+        U.text_to_gamer(
+            "equation of start and endpoint line".upper(),
+            (170, 560),
+            window,
+            self.output_color,
+            self.output_font,
+        )
+
         U.text_to_gamer(f"{line_equation}", (170,585), window,self.data_color, self.output_font)
     
     def position_bar(self, window):

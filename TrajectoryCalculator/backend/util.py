@@ -11,14 +11,10 @@ class Util:
         # convert strings with integeras  into 
         # an rgb tuple format
         # eg '200 33 44'   becomes (200,33,44)
-        
+
         to_list = the_string.split()
-        int_list = []
-        for item in to_list:
-            int_list.append(int(item))
-        
-        integer_tuple = tuple(int_list)
-        return integer_tuple
+        int_list = [int(item) for item in to_list]
+        return tuple(int_list)
         
         
 
